@@ -1,4 +1,5 @@
 #include "tree.hpp"
+#include "memlog.h"
 
 Tree::Node::Node(std::string word, Node* right, Node* left)
 // Descrição: método construtor da classe Node
@@ -36,12 +37,14 @@ void Tree::BST::insert(std::string word)
 {
     Node* current = root;
     while(current != nullptr){
+        LEMEMLOG((long int)(current), sizeof(Node), 0);
         if(current->value->word == word){
             current->value->counter++;
         } else if(current->value->word > word){
             if(current->left == nullptr){
                 current->left = new Node(word);
                 nElements++;
+                ESCREVEMEMLOG((long int)(current->left), sizeof(Node), 0);
                 return;
             } else {
                 current = current->left;
@@ -50,6 +53,7 @@ void Tree::BST::insert(std::string word)
             if(current->right == nullptr){
                 current->right = new Node(word);
                 nElements++;
+                ESCREVEMEMLOG((long int)(current->right), sizeof(Node), 0);
                 return;
             } else {
                 current = current->right;
