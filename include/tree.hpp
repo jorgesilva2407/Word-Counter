@@ -2,6 +2,7 @@
 #define TREE_H
 
 #include "wordCounter.hpp"
+#include "list.hpp"
 #include <string>
 
 namespace Tree{
@@ -25,6 +26,7 @@ namespace Tree{
         public:
             BST();
             void insert(std::string word);
+            ~BST();
     };
 }
 

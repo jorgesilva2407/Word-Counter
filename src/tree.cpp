@@ -17,8 +17,8 @@ Tree::Node::~Node()
 // Saída: nenhuma
 {
     this->value = nullptr;
-    this->right = nullptr;
-    this->left = nullptr;
+    delete right;
+    delete left;
 }
 
 Tree::BST::BST()
@@ -60,4 +60,13 @@ void Tree::BST::insert(std::string word)
             }
         }
     }
+}
+
+Tree::BST::~BST()
+// Descrição: método destrutor da classe BST
+// Entrada: nenhuma
+// Saida: nenhuma
+{
+    nElements = 0;
+    delete root;
 }
