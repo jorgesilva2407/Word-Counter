@@ -14,7 +14,7 @@ $(EXE) : $(OBJS)
 	$(CC) $(CFLAGS) -o $(EXE) $(OBJS)
 
 $(OBJ)/lexOrder.o : $(INC)/lexOrder.hpp $(SRC)/lexOrder.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/LexOrder.o -c $(SRC)/LexOrder.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/lexOrder.o -c $(SRC)/lexOrder.cpp
 
 $(OBJ)/list.o : $(INC)/list.hpp $(SRC)/list.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/list.o -c $(SRC)/list.cpp

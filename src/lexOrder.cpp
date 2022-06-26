@@ -32,8 +32,8 @@ std::string LexOrder::toLesserString(std::string s)
 {
     std::string aux = "";
 
-    for(int i=0; i < s.size(); i++){
-        if(LexOrder::isUpperLetter(s[i])) aux += LexOrder::toLowerLetter(s[i]);
+    for(long unsigned int i=0; i < s.size(); i++){
+        if(isUpperLetter(s[i])) aux += toLowerLetter(s[i]);
         else aux += s[i];
     }
 
@@ -71,9 +71,9 @@ bool LexOrder::LexOrder::biggerThan(std::string s0, std::string s1)
 // Entrada: duas strings
 // Saida: retorna verdadeiros se a i-ésima letra de s0 for maior que a i-ésima letra de s1 ou se as k letras de s1 forem iguais as k primeiras letras de s0 e o tamanho de s0 for maior do que k
 {
-    for(int i=0; i < s0.size() && i < s1.size(); i++){
+    for(long unsigned int i=0; i < s0.size() && i < s1.size(); i++){
         if(getValue(s0[i]) == getValue(s1[i])) continue;
-        else return getValue(s0[i]) > getValue(s1[i];)
+        else return getValue(s0[i]) > getValue(s1[i]);
     }
     return s0.size() > s1.size();
 }

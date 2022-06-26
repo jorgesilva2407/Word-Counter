@@ -19,8 +19,8 @@ namespace LexOrder{
 
         public:
             LexOrder();
-            void insert();
-            bool biggerThan(std::stirng s0, std::string s1);
+            void insert(char c);
+            bool biggerThan(std::string s0, std::string s1);
     };
 }
 
