@@ -10,7 +10,7 @@ namespace wordCounter{
         std::string word;
         int counter;
 
-        stringCoutner(std::string s){
+        wordCoutner(std::string s){
             word = s;
             counter = 1;
         }
