@@ -20,7 +20,7 @@ namespace Tree{
 
     class BST{
         Node* root;
-        long unsigned int nElementos;
+        long unsigned int nElements;
         
         public:
             BST();
