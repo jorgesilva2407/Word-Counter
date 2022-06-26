@@ -5,7 +5,7 @@ INC = include
 BIN = bin
 
 OBJS = $(SRC)/lexOrder.o $(SRC)/tree.o $(SRC)/list.o
-HDRS = $(INC)/stringCounter.hpp $(INC)/lexOrder.hpp $(INC)/tree.hpp $(INC)/list.hpp
+HDRS = $(INC)/wordCounter.hpp $(INC)/lexOrder.hpp $(INC)/tree.hpp $(INC)/list.hpp
 CFLAGS = -Wall -I include -std=c++17 -pg
 
 EXE = $(BIN)/tp2.exe

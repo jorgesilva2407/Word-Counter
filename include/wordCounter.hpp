@@ -1,12 +1,12 @@
-#ifndef STRING_COUNTER
-#define STRING_COUNTER
+#ifndef WORD_COUNTER
+#define WORD_COUNTER
 
 #include <string>
 
 // struct com o objetivo de armazenar os valores das palaravas e a quatidade de vazes a palavra foi contada
 
-namespace stringCounter{
-    struct stringCoutner{
+namespace wordCounter{
+    struct wordCoutner{
         std::string word;
         int counter;
 
