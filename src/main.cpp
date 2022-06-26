@@ -1,9 +1,7 @@
 #include <string>
 #include <sstream>
 #include "memlog.h"
-
-// constante que representa o número de letras do alfabeto
-#define ALPHABETSIZE 26
+#include "lexOrder.hpp"
 
 int main(int argc, char** argv){
     try{
@@ -69,7 +67,7 @@ int main(int argc, char** argv){
         for(int i=0; i < ALPHABETSIZE; i++){
             in >> buffer;
 
-            LO->insert(buffer);
+            LO->insert(buffer[0]);
         }
 
         // fase de captura do conteúdo do texto
@@ -91,7 +89,7 @@ int main(int argc, char** argv){
                 if(in >> aux) buffer += aux;
             }
 
-            tree->insert(aux);
+            tree->insert(LexOrder::toLesserString(buffer));
         }
 
         // fase de conversão de árvore para lista
