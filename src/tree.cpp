@@ -62,7 +62,11 @@ void Tree::BST::insert(std::string word)
     }
 }
 
-void Tree::BST::convertToList(Tree::Node* n, List::StaticList* l){
+void Tree::BST::convertToList(Tree::Node* n, List::StaticList* l)
+// Descrição: método auxiliar que usado para converter uma árvore em uma lista
+// Entrada: recebe um nó da árvore e uma lista
+// Saida: nenhuma
+{
     if(n == nullptr) return;
     
     LEMEMLOG((long int)(n), sizeof(Node), 0);
@@ -76,7 +80,11 @@ void Tree::BST::convertToList(Tree::Node* n, List::StaticList* l){
     return;
 }
 
-List::StaticList* Tree::BST::convertToList(){
+List::StaticList* Tree::BST::convertToList()
+// Descrição: método que transforma uma árvore em uma lista
+// Entrada: nenhuma
+// Saida: retorna uma lista com todos os elementos da árvore, ordenados de forma descrescente de acordo com o operador < padrão de strings
+{
     List::StaticList* aux = new List::StaticList(nElements);
     this->convertToList(root, aux);
     return aux;
