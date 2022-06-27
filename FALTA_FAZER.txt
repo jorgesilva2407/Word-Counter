@@ -1,6 +1,5 @@
 Coisas que faltam fazer neste trabalho:
--implementar todos os métodos da classa lista
--implementar uma forma de converter uma árvore em lista
+-implementar quickSort
 -testar para ver se tudo funciona
 -realizar a análise experimental
 -escrever a documentação

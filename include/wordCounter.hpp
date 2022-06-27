@@ -6,11 +6,11 @@
 // struct com o objetivo de armazenar os valores das palaravas e a quatidade de vazes a palavra foi contada
 
 namespace wordCounter{
-    struct wordCoutner{
+    struct wordCounter{
         std::string word;
         int counter;
 
-        wordCoutner(std::string s){
+        wordCounter(std::string s){
             word = s;
             counter = 1;
         }

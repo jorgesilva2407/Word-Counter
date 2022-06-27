@@ -4,19 +4,28 @@
 #include "wordCounter.hpp"
 #include "list.hpp"
 #include "lexOrder.hpp"
+#include <fstream>
+#include <string>
+#include "memlog.h"
 
 namespace List{
-    class StaticList(){        
+    class StaticList{     
         wordCounter::wordCounter* list;
-        long unsigned int nElementos;
+        long unsigned int nElements;
+        
+        int medianOf;
+        int minPartition;
         void sort(LexOrder::LexOrder* LO, long unsigned int begin, long unsigned int end);
         
         public:
-            List(Tree::BST* tree);
-            void sort(LexOrder::LexOrder* LO) : sort(LO, 0, nElementos-1){}
-            void print();
-            ~List();
-    }
+            StaticList(long unsigned int size);
+            void setMedian(int m);
+            void setPartition(int p);
+            void insert(wordCounter::wordCounter value, long unsigned int position);
+            void sort(LexOrder::LexOrder* LO);
+            void print(std::string outFile);
+            ~StaticList();
+    };
 }
 
 #endif

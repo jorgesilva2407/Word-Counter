@@ -4,9 +4,8 @@ OBJ = obj
 INC = include
 BIN = bin
 
-OBJS = $(SRC)/lexOrder.o $(SRC)/tree.o $(SRC)/list.o
-HDRS = $(INC)/wordCounter.hpp $(INC)/lexOrder.hpp $(INC)/tree.hpp $(INC)/list.hpp
-CFLAGS = -Wall -I include -std=c++17 -pg
+OBJS = $(OBJ)/lexOrder.o $(OBJ)/list.o $(OBJ)/tree.o $(OBJ)/memlog.o $(OBJ)/main.o
+CFLAGS = -Wall -Werror -I include -std=c++17
 
 EXE = $(BIN)/tp2.exe
 
@@ -21,6 +20,12 @@ $(OBJ)/list.o : $(INC)/list.hpp $(SRC)/list.cpp
 
 $(OBJ)/tree.o : $(INC)/tree.hpp $(SRC)/tree.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/tree.o -c $(SRC)/tree.cpp
+
+$(OBJ)/memlog.o: $(INC)/memlog.h $(SRC)/memlog.c
+	$(CC) $(CFLAGS) -o $(OBJ)/memlog.o -c $(SRC)/memlog.c
+
+$(OBJ)/main.o : $(SRC)/main.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/main.o -c $(SRC)/main.cpp
 
 clear: 
 	rm obj/* bin/* out/*

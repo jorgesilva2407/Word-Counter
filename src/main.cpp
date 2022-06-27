@@ -1,7 +1,10 @@
+#include <iostream>
 #include <string>
-#include <sstream>
+#include <fstream>
 #include "memlog.h"
 #include "lexOrder.hpp"
+#include "tree.hpp"
+#include "list.hpp"
 
 int main(int argc, char** argv){
     try{
@@ -11,7 +14,7 @@ int main(int argc, char** argv){
         // arquivo de entrada
         std::ifstream in;
         // arquivo de saida
-        std::ofstream out;
+        std::string out;
         
         // quantidade de elementos que deverão ser usados para escolher o pivô no quickSort
         int medianOf;
@@ -29,7 +32,7 @@ int main(int argc, char** argv){
                 in.open(argv[i]);
             } else if(buffer == "-o" || buffer == "-O"){
                 i++;
-                out.open(argv[i]);
+                out = argv[i];
             } else if(buffer == "-m" || buffer == "-M"){
                 i++;
                 medianOf = std::stoi(argv[i]);
@@ -43,16 +46,13 @@ int main(int argc, char** argv){
 
         // verifica se abertura dos arquivos ocorreu com sucesso
         if(!in.is_open()) throw "falha ao abrir o arquivo de entrada";
-        if(!out.is_open()) throw "falha ao abrir o arquivo de saida";
 
         // inicia log de memória
-        iniciaMemLog("memLog.out");
+        char memLog[] = "out/memLog.out";
+        iniciaMemLog(memLog);
 
         // define se o log de memória deve ou não ser escrito
         activeMemLog ? ativaMemLog():desativaMemLog();
-
-        // fase de captura da ordem lexicográfica
-        defineFaseMemLog(0);
 
         // captura a o termo #ORDEM do texto
         in >> buffer;
@@ -70,9 +70,6 @@ int main(int argc, char** argv){
             LO->insert(buffer[0]);
         }
 
-        // fase de captura do conteúdo do texto
-        defineFaseMemLog(1);
-
         // captura o termo #TEXTO do texto
         in >> buffer;
 
@@ -84,7 +81,7 @@ int main(int argc, char** argv){
 
         // insere as palavras do texto na árvore
         while(in >> buffer){
-            if(buffer[buffer.size() - 1] == "-"){
+            if(buffer[buffer.size() - 1] == '-'){
                 std::string aux;
                 if(in >> aux) buffer += aux;
             }
@@ -92,25 +89,23 @@ int main(int argc, char** argv){
             tree->insert(LexOrder::toLesserString(buffer));
         }
 
-        // fase de conversão de árvore para lista
-        defineFaseMemLog(2);
-
         // converte a árvore em uma lista
-        List::List* list = new List::List(tree);
+        List::StaticList* list = tree->convertToList();
+        delete tree;
 
-        // fase de ordenação da lista
-        defineFaseMemLog(3);
+        // define quais são os parâmetros dos métodos usados para otimizar o quickSort
+        list->setMedian(medianOf);
+        list->setPartition(minPartition);
 
         // ordena a lista de acordo com a ordem lexicográfica definida
         list->sort(LO);
 
-        // fase de impressão do resultado
-        defineFaseMemLog(4);
         // imprime a lista ordenada de acordo com a ordem lexicográfica
         list->print(out);
+        delete list;
 
         // finaliza o log de memória
-        finalizaMemLog(memLog);
+        finalizaMemLog();
     }
 
     catch (const char* e){

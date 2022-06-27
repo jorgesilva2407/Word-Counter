@@ -4,12 +4,13 @@
 #include "wordCounter.hpp"
 #include "list.hpp"
 #include <string>
+#include "memlog.h"
 
 namespace Tree{
     class Node{
         friend class BST;
 
-        wordCounter::wordCoutner* value;
+        wordCounter::wordCounter* value;
         Node* right;
         Node* left;
 
@@ -22,10 +23,13 @@ namespace Tree{
     class BST{
         Node* root;
         long unsigned int nElements;
+        long unsigned int counter;
+        void convertToList(Node* n, List::StaticList* l);
         
         public:
             BST();
             void insert(std::string word);
+            List::StaticList* convertToList();
             ~BST();
     };
 }

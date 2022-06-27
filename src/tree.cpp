@@ -6,7 +6,7 @@ Tree::Node::Node(std::string word, Node* right, Node* left)
 // Entrada: recebe uma string, e ponteiros para dois outros nodes
 // Saída: nenhuma
 {
-    this->value = new wordCounter::wordCoutner(word);
+    this->value = new wordCounter::wordCounter(word);
     this->right = right;
     this->left = left;
 }
@@ -60,6 +60,26 @@ void Tree::BST::insert(std::string word)
             }
         }
     }
+}
+
+void Tree::BST::convertToList(Tree::Node* n, List::StaticList* l){
+    if(n == nullptr) return;
+    
+    LEMEMLOG((long int)(n), sizeof(Node), 0);
+    convertToList(n->right, l);
+    
+    LEMEMLOG((long int)(n), sizeof(Node), 0);
+    l->insert(*(n->value), counter);
+    counter++;
+    
+    convertToList(n->left, l);
+    return;
+}
+
+List::StaticList* Tree::BST::convertToList(){
+    List::StaticList* aux = new List::StaticList(nElements);
+    this->convertToList(root, aux);
+    return aux;
 }
 
 Tree::BST::~BST()
