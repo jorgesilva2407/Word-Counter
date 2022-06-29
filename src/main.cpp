@@ -107,6 +107,9 @@ int main(int argc, char** argv){
         // ordena a lista de acordo com a ordem lexicográfica definida
         list->sort(LO);
 
+        // desaloca a memória pertencente à ordem lexicográfica
+        delete LO;
+
         // imprime a lista ordenada de acordo com a ordem lexicográfica
         list->print(out);
         delete list;
