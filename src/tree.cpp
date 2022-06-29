@@ -77,12 +77,12 @@ void Tree::BST::convertToList(Tree::Node* n, List::StaticList* l)
     if(n == nullptr) return;
     
     LEMEMLOG((long int)(n), sizeof(Node), 0);
-    convertToList(n->right, l);
-    LEMEMLOG((long int)(n), sizeof(Node), 0);
     convertToList(n->left, l);
-    
+
     l->insert(n->value);
     
+    LEMEMLOG((long int)(n), sizeof(Node), 0);
+    convertToList(n->right, l);
     return;
 }
 
