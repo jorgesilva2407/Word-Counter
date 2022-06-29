@@ -10,6 +10,11 @@ namespace wordCounter{
         std::string word;
         int counter;
 
+        wordCounter(){
+            word = "";
+            counter = 0;
+        }
+
         wordCounter(std::string s){
             word = s;
             counter = 1;

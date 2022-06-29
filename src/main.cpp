@@ -17,9 +17,9 @@ int main(int argc, char** argv){
         std::string out;
         
         // quantidade de elementos que deverão ser usados para escolher o pivô no quickSort
-        int medianOf;
+        int medianOf = 1;
         // menor partição que o quickSort deve criar
-        int minPartition;
+        int minPartition = 1;
 
         // indica se o log de memória está ativado
         bool activeMemLog = false;
@@ -36,13 +36,20 @@ int main(int argc, char** argv){
             } else if(buffer == "-m" || buffer == "-M"){
                 i++;
                 medianOf = std::stoi(argv[i]);
+                if(medianOf < 1) throw "valor inválido para mediana";
             } else if(buffer == "-S" || buffer == "-S"){
                 i++;
                 minPartition = std::stoi(argv[i]);
+                if(minPartition < 1) throw "valor inválido para tamanho de menor partição";
             } else if(buffer == "-l" || buffer == "-L"){
                 activeMemLog = true;
             }
         }
+
+        // std::cin >> buffer;
+        // in.open(buffer);
+
+        // std::cin >> out;
 
         // verifica se abertura dos arquivos ocorreu com sucesso
         if(!in.is_open()) throw "falha ao abrir o arquivo de entrada";

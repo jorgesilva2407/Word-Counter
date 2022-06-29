@@ -10,9 +10,10 @@
 
 namespace List{
     class StaticList{     
-        wordCounter::wordCounter* list;
+        wordCounter::wordCounter** list;
         long unsigned int nElements;
         
+        long unsigned int counter;
         int medianOf;
         int minPartition;
         void sort(LexOrder::LexOrder* LO, long unsigned int begin, long unsigned int end);
@@ -21,7 +22,7 @@ namespace List{
             StaticList(long unsigned int size);
             void setMedian(int m);
             void setPartition(int p);
-            void insert(wordCounter::wordCounter value, long unsigned int position);
+            void insert(wordCounter::wordCounter* value);
             void sort(LexOrder::LexOrder* LO);
             void print(std::string outFile);
             ~StaticList();

@@ -7,9 +7,10 @@ List::StaticList::StaticList(unsigned long size)
 // Saída: nenhuma
 {
     nElements = size;
-    list = (wordCounter::wordCounter*)malloc(size*sizeof(wordCounter::wordCounter));
+    list = (wordCounter::wordCounter**)malloc(size*sizeof(wordCounter::wordCounter*));
     medianOf = 0;
     minPartition = 0;
+    counter = 0;
 }
 
 void List::StaticList::setMedian(int m)
@@ -28,13 +29,14 @@ void List::StaticList::setPartition(int p)
     this->minPartition = p;
 }
 
-void List::StaticList::insert(wordCounter::wordCounter value, unsigned long position)
+void List::StaticList::insert(wordCounter::wordCounter* value)
 // Descrição: insere um valor na lista
 // Entrada: um valor e a posiçõa na qual ele será inserido
 // Saída: nenhuma
 {
-    list[position] = value;
-    ESCREVEMEMLOG((long int)(&(list[position])),sizeof(wordCounter::wordCounter),1);
+    list[counter] = value;
+    ESCREVEMEMLOG((long int)(&(list[counter])),sizeof(wordCounter::wordCounter),1);
+    counter++;
 }
 
 void List::StaticList::sort(LexOrder::LexOrder* LO, long unsigned int begin, long unsigned int end)
@@ -63,7 +65,7 @@ void List::StaticList::print(std::string outFile)
     if(!out.is_open()) throw "falha ao abrir o arquivo";
 
     for(long unsigned int i=0; i < nElements; i++){
-        out << list[i].word << " " << list[i].counter << std::endl;
+        out << list[i]->word << " " << list[i]->counter << std::endl;
         LEMEMLOG((long int)(&(list[i])),sizeof(wordCounter::wordCounter),1);
     }
     
@@ -75,6 +77,9 @@ List::StaticList::~StaticList()
 // Entrada: nenhuma
 // Saída: nenhuma
 {
-    nElements = 0;
+    for(long unsigned int i=0; i < nElements; i++){
+        delete list[i];
+    }
     free(list);
+    nElements = 0;
 }

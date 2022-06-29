@@ -10,7 +10,7 @@ CFLAGS = -Wall -Werror -I include -std=c++17
 EXE = $(BIN)/tp2.exe
 
 $(EXE) : $(OBJS)
-	$(CC) $(CFLAGS) -o $(EXE) $(OBJS)
+	$(CC) $(CFLAGS) -o $(EXE) $(OBJS) -g
 
 $(OBJ)/lexOrder.o : $(INC)/lexOrder.hpp $(SRC)/lexOrder.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/lexOrder.o -c $(SRC)/lexOrder.cpp

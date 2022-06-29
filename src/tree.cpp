@@ -35,11 +35,18 @@ void Tree::BST::insert(std::string word)
 // Entrada: uma string
 // Saída: nenhuma
 {
+    if(root == nullptr){
+        root = new Node(word);
+        nElements++;
+        ESCREVEMEMLOG((long int)(root), sizeof(Node), 0);
+        return;
+    }
     Node* current = root;
     while(current != nullptr){
         LEMEMLOG((long int)(current), sizeof(Node), 0);
         if(current->value->word == word){
             current->value->counter++;
+            return;
         } else if(current->value->word > word){
             if(current->left == nullptr){
                 current->left = new Node(word);
@@ -71,12 +78,11 @@ void Tree::BST::convertToList(Tree::Node* n, List::StaticList* l)
     
     LEMEMLOG((long int)(n), sizeof(Node), 0);
     convertToList(n->right, l);
-    
     LEMEMLOG((long int)(n), sizeof(Node), 0);
-    l->insert(*(n->value), counter);
-    counter++;
-    
     convertToList(n->left, l);
+    
+    l->insert(n->value);
+    
     return;
 }
 
