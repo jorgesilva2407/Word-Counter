@@ -1,1 +1,4 @@
-debug/* obj/* out/* test/* bin/*
+**/debug
+**/obj
+**/bin
+**/test
