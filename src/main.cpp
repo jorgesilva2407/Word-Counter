@@ -93,7 +93,7 @@ int main(int argc, char** argv){
                 if(in >> aux) buffer += aux;
             }
 
-            tree->insert(LexOrder::toLesserString(buffer));
+            tree->insert(LexOrder::toRegularString(buffer));
         }
 
         // converte a árvore em uma lista

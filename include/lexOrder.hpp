@@ -7,10 +7,11 @@
 #define ALPHABETSIZE 26
 
 namespace LexOrder{
+    inline bool ignore(char c);
     inline bool isUpperLetter(char c);
     inline bool isLowerLetter(char c);
     inline char toLowerLetter(char c);
-    std::string toLesserString(std::string c);
+    std::string toRegularString(std::string c);
 
     class LexOrder{
         int values[26];

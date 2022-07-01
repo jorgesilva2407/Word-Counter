@@ -35,12 +35,15 @@ void Tree::BST::insert(std::string word)
 // Entrada: uma string
 // Saída: nenhuma
 {
+    if(word == "") return;
+
     if(root == nullptr){
         root = new Node(word);
         nElements++;
         ESCREVEMEMLOG((long int)(root), sizeof(Node), 0);
         return;
     }
+    
     Node* current = root;
     while(current != nullptr){
         LEMEMLOG((long int)(current), sizeof(Node), 0);
