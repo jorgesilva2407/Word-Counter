@@ -1,4 +1,4 @@
-**/debug/tp2.exe
+**/debug
 **/obj/*.o
-**/bin
+**/bin/*.exe
 **/test
