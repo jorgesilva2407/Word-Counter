@@ -28,4 +28,4 @@ $(OBJ)/main.o : $(SRC)/main.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/main.o -c $(SRC)/main.cpp
 
 clear: 
-	rm obj/* bin/* out/*
+	rm obj/*.o bin/*.exe out/*

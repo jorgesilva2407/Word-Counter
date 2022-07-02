@@ -11,12 +11,15 @@
 namespace List{
     class StaticList{     
         wordCounter::wordCounter** list;
-        long unsigned int nElements;
+        int nElements;
         
-        long unsigned int counter;
+        int counter;
         int medianOf;
         int minPartition;
-        void sort(LexOrder::LexOrder* LO, long unsigned int begin, long unsigned int end);
+        void selectionSort(wordCounter::wordCounter** list, LexOrder::LexOrder* LO, int begin, int end);
+        void quickSort(wordCounter::wordCounter** list, LexOrder::LexOrder* LO, int begin, int end);
+        void partition(int begin, int end,int *i, int *j, wordCounter::wordCounter** list, LexOrder::LexOrder* LO);
+        void order(int begin, int end, wordCounter::wordCounter** list, LexOrder::LexOrder* LO);
         
         public:
             StaticList(long unsigned int size);

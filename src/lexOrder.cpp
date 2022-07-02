@@ -93,13 +93,12 @@ inline int LexOrder::LexOrder::getValue(char c)
 }
 
 bool LexOrder::LexOrder::biggerThan(std::string s0, std::string s1)
-// Descrição: compara duas strings de acordo com a ordem lexical definida
+// Descrição: retorna se a string s0 é maior que a string s1
 // Entrada: duas strings
-// Saida: retorna verdadeiros se a i-ésima letra de s0 for maior que a i-ésima letra de s1 ou se as k letras de s1 forem iguais as k primeiras letras de s0 e o tamanho de s0 for maior do que k
+// Saida: retorna verdadeiro se a i-ésima letra de s0 for maior que a i-ésima letra de s1 ou se as k letras de s1 forem iguais as k primeiras letras de s0 e o tamanho de s0 for maior do que k
 {
     for(long unsigned int i=0; i < s0.size() && i < s1.size(); i++){
-        if(getValue(s0[i]) == getValue(s1[i])) continue;
-        else return getValue(s0[i]) > getValue(s1[i]);
+        if(getValue(s0[i]) != getValue(s1[i])) return getValue(s0[i]) > getValue(s1[i]);
     }
     return s0.size() > s1.size();
 }
