@@ -3,3 +3,4 @@
 **/bin/*.exe
 **/test
 **/base_out
+**/out

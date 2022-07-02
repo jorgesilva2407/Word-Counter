@@ -50,10 +50,14 @@ void List::StaticList::selectionSort(wordCounter::wordCounter** list, LexOrder::
             if(LO->biggerThan(list[min]->word, list[j]->word)){
                 min = j;
             }
+            LEMEMLOG((long int)(&(list[min]->word)),sizeof(wordCounter::wordCounter),1);
+            LEMEMLOG((long int)(&(list[j]->word)),sizeof(wordCounter::wordCounter),1);
         }
         wordCounter::wordCounter* aux = list[i];
         list[i] = list[min];
         list[min] = aux;
+        ESCREVEMEMLOG((long int)(&(list[i])),sizeof(wordCounter::wordCounter*),1);
+        ESCREVEMEMLOG((long int)(&(list[min])),sizeof(wordCounter::wordCounter*),1);
     }
 }
 
@@ -72,23 +76,34 @@ void List::StaticList::partition(int begin, int end,int *i, int *j, wordCounter:
         int cursor = begin;
         for(int i=0; i < medianOf; i++){
             pivotCandidates[i] = l[cursor];
+            LEMEMLOG((long int)(&(l[cursor])),sizeof(wordCounter::wordCounter*),1);
+            ESCREVEMEMLOG((long int)(&(pivotCandidates[i])),sizeof(wordCounter::wordCounter*),1);
             cursor += step;
         }
         selectionSort(pivotCandidates, LO, 0, medianOf-1);
         pivot = pivotCandidates[(medianOf/2)];
+        LEMEMLOG((long int)(&(pivotCandidates[medianOf/2])),sizeof(wordCounter::wordCounter*),1);
     } else {
         pivot = l[begin];
     }
 
     do
     {
-        while (LO->biggerThan(pivot->word, l[*i]->word)) (*i)++;
-        while (LO->biggerThan(l[*j]->word, pivot->word) && l[*j]->word != pivot->word) (*j)--;
+        while (LO->biggerThan(pivot->word, l[*i]->word)){
+            (*i)++;
+            LEMEMLOG((long int)(&(l[*i]->word)),sizeof(wordCounter::wordCounter),1);
+        }
+        while (LO->biggerThan(l[*j]->word, pivot->word) && l[*j]->word != pivot->word){
+            (*j)--;
+            LEMEMLOG((long int)(&(l[*j]->word)),sizeof(wordCounter::wordCounter),1);
+        }
         if (*i <= *j){
             wordCounter::wordCounter* aux = l[*i];
             l[*i] = l[*j];
             l[*j] = aux;
             (*i)++; (*j)--;
+            ESCREVEMEMLOG((long int)(&(l[*i])),sizeof(wordCounter::wordCounter*),1);
+            ESCREVEMEMLOG((long int)(&(l[*j])),sizeof(wordCounter::wordCounter*),1);
         }
     } while (*i <= *j);
 }
