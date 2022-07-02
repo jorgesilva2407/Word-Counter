@@ -39,7 +39,11 @@ void List::StaticList::insert(wordCounter::wordCounter* value)
     counter++;
 }
 
-void List::StaticList::selectionSort(wordCounter::wordCounter** list, LexOrder::LexOrder* LO, int begin, int end){
+void List::StaticList::selectionSort(wordCounter::wordCounter** list, LexOrder::LexOrder* LO, int begin, int end)
+// Definição: ordena uma partição de uma lista utilizando o método de seleção
+// Entrada: recebe uma lista, uma ordem lexicográfica, o índice do início da partição e o índice do fim da partição
+// Saida: nenhuma
+{
     for(int i = begin; i < end; i++){
         int min = i;
         for(int j = i+1; j <= end; j++){
@@ -53,7 +57,11 @@ void List::StaticList::selectionSort(wordCounter::wordCounter** list, LexOrder::
     }
 }
 
-void List::StaticList::partition(int begin, int end,int *i, int *j, wordCounter::wordCounter** l, LexOrder::LexOrder* LO){
+void List::StaticList::partition(int begin, int end,int *i, int *j, wordCounter::wordCounter** l, LexOrder::LexOrder* LO)
+// Descrição: particiona uma partição de um vetor estático
+// Entrada: os índices de início e fim da partição atual, referência para o início e fim das novas partições, um vetor estático e uma ordme lexicográfica
+// Saída: os índices de início e fim das novas partições
+{
     *i = begin; 
     *j = end;
     wordCounter::wordCounter* pivot = nullptr;
@@ -85,7 +93,11 @@ void List::StaticList::partition(int begin, int end,int *i, int *j, wordCounter:
     } while (*i <= *j);
 }
 
-void List::StaticList::order(int begin, int end, wordCounter::wordCounter** l, LexOrder::LexOrder* LO){
+void List::StaticList::order(int begin, int end, wordCounter::wordCounter** l, LexOrder::LexOrder* LO)
+// Descrição: vai particionando as partições até que elas atinjam o tamanho mínimo
+// Entrada: o índices de início e fim da partição atual, um vetor estático e uma ordem lexicográfica
+// Saída: nenhuma
+{
     if(end - begin + 1 <= minPartition || end - begin + 1 <= medianOf){
         selectionSort(list, LO, begin, end);
     }

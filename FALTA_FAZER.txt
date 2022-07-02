@@ -1,5 +1,3 @@
 Coisas que faltam fazer neste trabalho:
--implementar quickSort
--testar para ver se tudo funciona
 -realizar a análise experimental
 -escrever a documentação

@@ -16,6 +16,7 @@ namespace List{
         int counter;
         int medianOf;
         int minPartition;
+        
         void selectionSort(wordCounter::wordCounter** list, LexOrder::LexOrder* LO, int begin, int end);
         void quickSort(wordCounter::wordCounter** list, LexOrder::LexOrder* LO, int begin, int end);
         void partition(int begin, int end,int *i, int *j, wordCounter::wordCounter** list, LexOrder::LexOrder* LO);
