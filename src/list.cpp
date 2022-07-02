@@ -54,17 +54,23 @@ void List::StaticList::selectionSort(wordCounter::wordCounter** list, LexOrder::
 }
 
 void List::StaticList::partition(int begin, int end,int *i, int *j, wordCounter::wordCounter** l, LexOrder::LexOrder* LO){
-    *i = begin; *j = end;
+    *i = begin; 
+    *j = end;
+    wordCounter::wordCounter* pivot = nullptr;
 
-    wordCounter::wordCounter** pivotCandidates = (wordCounter::wordCounter**)malloc(medianOf*sizeof(wordCounter::wordCounter*));
-    int step = (end - begin + 1)/(medianOf - 1);
-    int cursor = begin;
-    for(int i=0; i < medianOf; i++){
-        pivotCandidates[i] = l[cursor];
-        cursor += step;
+    if(medianOf > 1){
+        wordCounter::wordCounter** pivotCandidates = (wordCounter::wordCounter**)malloc(medianOf*sizeof(wordCounter::wordCounter*));
+        int step = (end - begin + 1)/(medianOf - 1);
+        int cursor = begin;
+        for(int i=0; i < medianOf; i++){
+            pivotCandidates[i] = l[cursor];
+            cursor += step;
+        }
+        selectionSort(pivotCandidates, LO, 0, medianOf-1);
+        pivot = pivotCandidates[(medianOf/2)];
+    } else {
+        pivot = l[begin];
     }
-    selectionSort(pivotCandidates, LO, 0, medianOf-1);
-    wordCounter::wordCounter* pivot = pivotCandidates[(medianOf/2)];
 
     do
     {
@@ -110,6 +116,8 @@ void List::StaticList::print(std::string outFile)
         out << list[i]->word << " " << list[i]->counter << std::endl;
         LEMEMLOG((long int)(&(list[i])),sizeof(wordCounter::wordCounter),1);
     }
+    
+    out << "#FIM" << std::endl;
     
     out.close();
 }
