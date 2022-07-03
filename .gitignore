@@ -1,7 +1,4 @@
-**/debug
-**/obj/*.o
+**/complexidade
 **/bin/*.exe
-**/test
-**/base_out
-**/out
-**/analisamem
+**/obj/*.o
+*.out

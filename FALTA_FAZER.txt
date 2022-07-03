@@ -1,3 +1,0 @@
-Coisas que faltam fazer neste trabalho:
--realizar a análise experimental
--escrever a documentação

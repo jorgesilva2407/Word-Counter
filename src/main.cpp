@@ -50,7 +50,7 @@ int main(int argc, char** argv){
         if(!in.is_open()) throw "falha ao abrir o arquivo de entrada";
 
         // inicia log de memória
-        char memLog[] = "out/memLog.out";
+        char memLog[] = "memLog.out";
         iniciaMemLog(memLog);
 
         // define se o log de memória deve ou não ser escrito
