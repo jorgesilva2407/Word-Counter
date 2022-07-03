@@ -25,9 +25,11 @@ namespace Tree{
         long unsigned int nElements;
         long unsigned int counter;
         void convertToList(Node* n, List::StaticList* l);
+        void accessTree(Node* n);
         
         public:
             BST();
+            void accessTree();
             void insert(std::string word);
             List::StaticList* convertToList();
             ~BST();

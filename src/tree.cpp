@@ -89,6 +89,20 @@ void Tree::BST::convertToList(Tree::Node* n, List::StaticList* l)
     return;
 }
 
+void Tree::BST::accessTree(Tree::Node* n)
+// Descrição: acessa um nó específico e seus filhos
+// Entrada: o nó a ser acessado
+// Saída: nenhuma
+{
+    if(n == nullptr) return;
+    
+    LEMEMLOG((long int)(n), sizeof(Node), 0);
+    accessTree(n->left);
+    LEMEMLOG((long int)(n), sizeof(Node), 0);
+    accessTree(n->right);
+    LEMEMLOG((long int)(n), sizeof(Node), 0);
+}
+
 List::StaticList* Tree::BST::convertToList()
 // Descrição: método que transforma uma árvore em uma lista
 // Entrada: nenhuma
@@ -97,6 +111,14 @@ List::StaticList* Tree::BST::convertToList()
     List::StaticList* aux = new List::StaticList(nElements);
     this->convertToList(root, aux);
     return aux;
+}
+
+void Tree::BST::accessTree()
+// Descrição: acessa todos os elementos da árvore
+// Entrada: nenhuma
+// Saída: nenhuma
+{
+    this->accessTree(root);
 }
 
 Tree::BST::~BST()

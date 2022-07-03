@@ -5,7 +5,7 @@ INC = include
 BIN = bin
 
 OBJS = $(OBJ)/lexOrder.o $(OBJ)/list.o $(OBJ)/tree.o $(OBJ)/memlog.o $(OBJ)/main.o
-CFLAGS = -Wall -Werror -I include -std=c++17
+CFLAGS = -Wall -I include -std=c++17
 
 EXE = $(BIN)/tp2.exe
 

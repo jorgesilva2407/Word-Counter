@@ -46,11 +46,6 @@ int main(int argc, char** argv){
             }
         }
 
-        // std::cin >> buffer;
-        // in.open(buffer);
-
-        // std::cin >> out;
-
         // verifica se abertura dos arquivos ocorreu com sucesso
         if(!in.is_open()) throw "falha ao abrir o arquivo de entrada";
 
@@ -76,6 +71,9 @@ int main(int argc, char** argv){
 
             LO->insert(buffer[0]);
         }
+        
+        // fase de captura do texto
+        defineFaseMemLog(0);
 
         // captura o termo #TEXTO do texto
         in >> buffer;
@@ -96,6 +94,12 @@ int main(int argc, char** argv){
             tree->insert(LexOrder::toRegularString(buffer));
         }
 
+        // fase de conversão de árvore em lista
+        defineFaseMemLog(1);
+
+        // acessa ou não o conteúdo da árvore para análise de localidade de referência
+        if(activeMemLog) tree->accessTree();
+
         // converte a árvore em uma lista
         List::StaticList* list = tree->convertToList();
         delete tree;
@@ -103,6 +107,12 @@ int main(int argc, char** argv){
         // define quais são os parâmetros dos métodos usados para otimizar o quickSort
         list->setMedian(medianOf);
         list->setPartition(minPartition);
+
+        // fase de ordenação da lista
+        defineFaseMemLog(2);
+
+        // acessa ou não o conteúdo da lista para análise de localidade de referência
+        if(activeMemLog) list->accessList();
 
         // ordena a lista de acordo com a ordem lexicográfica definida
         list->sort(LO);

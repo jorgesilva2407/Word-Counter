@@ -24,6 +24,7 @@ namespace List{
         
         public:
             StaticList(long unsigned int size);
+            void accessList();
             void setMedian(int m);
             void setPartition(int p);
             void insert(wordCounter::wordCounter* value);

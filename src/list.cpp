@@ -13,6 +13,16 @@ List::StaticList::StaticList(unsigned long size)
     counter = 0;
 }
 
+void List::StaticList::accessList()
+// Descrição: acessa todos os elementos da lista com finalidade de computar a distância de pilha
+// Entrada: nenhuma
+// Saída: nenhuma
+{
+    for(int i=0; i < nElements; i++){
+        LEMEMLOG((long int)(&(list[i])),sizeof(wordCounter::wordCounter*),1);
+    }
+}
+
 void List::StaticList::setMedian(int m)
 // Descrição: define quantos elementos será escolhidos para se escolher o pivô no momento de realiza o quickSort
 // Entrada: um número inteiro
@@ -68,32 +78,26 @@ void List::StaticList::partition(int begin, int end,int *i, int *j, wordCounter:
 {
     *i = begin; 
     *j = end;
-    wordCounter::wordCounter* pivot = nullptr;
+    std::string pivot = "";
 
-    if(medianOf > 1){
-        wordCounter::wordCounter** pivotCandidates = (wordCounter::wordCounter**)malloc(medianOf*sizeof(wordCounter::wordCounter*));
-        int step = (end - begin + 1)/(medianOf - 1);
-        int cursor = begin;
+    if(medianOf > 1 && (end - begin + 1) > medianOf){
+        wordCounter::wordCounter** pc = (wordCounter::wordCounter**)malloc(medianOf*sizeof(wordCounter::wordCounter*));
         for(int i=0; i < medianOf; i++){
-            pivotCandidates[i] = l[cursor];
-            LEMEMLOG((long int)(&(l[cursor])),sizeof(wordCounter::wordCounter*),1);
-            ESCREVEMEMLOG((long int)(&(pivotCandidates[i])),sizeof(wordCounter::wordCounter*),1);
-            cursor += step;
+            pc[i] = l[begin + i];
         }
-        selectionSort(pivotCandidates, LO, 0, medianOf-1);
-        pivot = pivotCandidates[(medianOf/2)];
-        LEMEMLOG((long int)(&(pivotCandidates[medianOf/2])),sizeof(wordCounter::wordCounter*),1);
+        pivot = pc[medianOf/2]->word;
+        free(pc);
     } else {
-        pivot = l[begin];
+        pivot = l[begin]->word;
     }
 
     do
     {
-        while (LO->biggerThan(pivot->word, l[*i]->word)){
+        while (LO->biggerThan(pivot, l[*i]->word)){
             (*i)++;
             LEMEMLOG((long int)(&(l[*i]->word)),sizeof(wordCounter::wordCounter),1);
         }
-        while (LO->biggerThan(l[*j]->word, pivot->word) && l[*j]->word != pivot->word){
+        while ((LO->biggerThan(l[*j]->word, pivot)) && (l[*j]->word != pivot)){
             (*j)--;
             LEMEMLOG((long int)(&(l[*j]->word)),sizeof(wordCounter::wordCounter),1);
         }
