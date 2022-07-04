@@ -5,7 +5,7 @@ INC = include
 BIN = bin
 
 OBJS = $(OBJ)/lexOrder.o $(OBJ)/list.o $(OBJ)/tree.o $(OBJ)/memlog.o $(OBJ)/main.o
-CFLAGS = -Wall -I include -std=c++17
+CFLAGS = -Wall -Werror -I include -std=c++17
 
 EXE = $(BIN)/tp2.exe
 
@@ -28,4 +28,4 @@ $(OBJ)/main.o : $(SRC)/main.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/main.o -c $(SRC)/main.cpp
 
 clear: 
-	rm obj/*.o bin/*.exe out/*
+	rm obj/*.o bin/*.exe
